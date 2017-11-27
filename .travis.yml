@@ -44,7 +44,7 @@ install:
     - pip install nibabel
     #- pip install git+https://github.com/AGrigis/sf_deconvolve.git
     - pip install .
-    - export PATH=/home/travis/build/*/pisap:$PATH
+    - export PYTHONPATH=/home/travis/build/*/pisap:$PYTHONPATH
 
 script:
     - python setup.py nosetests
