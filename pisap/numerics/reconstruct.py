@@ -17,7 +17,7 @@ from scipy.linalg import norm
 import pisap
 from pisap.stats import sigma_mad
 from pisap.stats import multiscale_sigma_mad
-from .proximity import SoftThreshold2Dt
+#from .proximity import SoftThreshold2Dt
 from .reweight import mReweight
 
 # Third party import
