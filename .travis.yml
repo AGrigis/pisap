@@ -14,6 +14,7 @@ before_install:
     - sudo updatedb
     - locate pyconfig.h
     - locate patchlevel.h
+    - locate libgomp
     - if [ $TRAVIS_PYTHON_VERSION == "2.7" ]; then
         wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
       else
@@ -61,7 +62,7 @@ install:
     - cp $TRAVIS_BUILD_DIR/install/pysparse.so $TRAVIS_BUILD_DIR/lib;
     - ldd $TRAVIS_BUILD_DIR/lib/pysparse.so
     - export PYTHONPATH=$TRAVIS_BUILD_DIR/lib:$PYTHONPATH
-    - python -c "import pysparse; print pysparse.__file__"
+    - python -c "import pysparse; print(pysparse.__file__)"
     - if [ $TRAVIS_PYTHON_VERSION == "2.7" ]; then
         ls $TRAVIS_BUILD_DIR/build/temp.linux-x86_64-2.7/extern/bin;
         ls $TRAVIS_BUILD_DIR/build/lib.linux-x86_64-2.7;
