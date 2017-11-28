@@ -53,8 +53,9 @@ install:
     - pip install coveralls
     - pip install pep8
     - pip install nibabel
-    - python setup.py bdist
+    - pip install -b $TRAVIS_BUILD_DIR/build -t $TRAVIS_BUILD_DIR/install .
     - ls $TRAVIS_BUILD_DIR
+    - ls $TRAVIS_BUILD_DIR/install
     - ls $TRAVIS_BUILD_DIR/build
     - if [ $TRAVIS_PYTHON_VERSION == "2.7" ]; then
         ls $TRAVIS_BUILD_DIR/build/temp.linux-x86_64-2.7/extern/bin;
