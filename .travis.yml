@@ -54,13 +54,14 @@ install:
     - pip install coveralls
     - pip install pep8
     - pip install nibabel
-    #- pip install -b $TRAVIS_BUILD_DIR/build -t $TRAVIS_BUILD_DIR/install --no-clean .
+    - pip install -b $TRAVIS_BUILD_DIR/build -t $TRAVIS_BUILD_DIR/install --no-clean .
     - ls $TRAVIS_BUILD_DIR
     #- ls $TRAVIS_BUILD_DIR/install
     #- ls $TRAVIS_BUILD_DIR/build
-    #- cp $TRAVIS_BUILD_DIR/install/pysparse.so $TRAVIS_BUILD_DIR/lib;
-    #- ldd $TRAVIS_BUILD_DIR/lib/pysparse.so
-    #- export PYTHONPATH=$TRAVIS_BUILD_DIR/lib:$PYTHONPATH
+    - cp $TRAVIS_BUILD_DIR/install/pysparse.so $TRAVIS_BUILD_DIR/lib;
+    - ldd $TRAVIS_BUILD_DIR/lib/pysparse.so
+    - export PYTHONPATH=$TRAVIS_BUILD_DIR/lib:$PYTHONPATH
+    - python -c "import pysparse; print pysparse.__file__"
     - if [ $TRAVIS_PYTHON_VERSION == "2.7" ]; then
         ls $TRAVIS_BUILD_DIR/build/temp.linux-x86_64-2.7/extern/bin;
         ls $TRAVIS_BUILD_DIR/build/lib.linux-x86_64-2.7;
