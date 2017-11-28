@@ -1,5 +1,5 @@
 sudo: required
-dist: trusty
+dist: xenial
 language: python
 
 python:
@@ -9,8 +9,8 @@ python:
 
 before_install:
     - sudo apt-get update
-    - sudo apt install python3-dev
-    - sudo apt install libgomp1
+    #- sudo apt install python3-dev
+    #- sudo apt install libgomp1
     - sudo updatedb
     - locate pyconfig.h
     - locate patchlevel.h
@@ -54,16 +54,16 @@ install:
     - pip install coveralls
     - pip install pep8
     - pip install nibabel
-    - pip install -b $TRAVIS_BUILD_DIR/build -t $TRAVIS_BUILD_DIR/install --no-clean .
+    #- pip install -b $TRAVIS_BUILD_DIR/build -t $TRAVIS_BUILD_DIR/install --no-clean .
     - ls $TRAVIS_BUILD_DIR
-    - ls $TRAVIS_BUILD_DIR/install
-    - ls $TRAVIS_BUILD_DIR/build
-    - cp $TRAVIS_BUILD_DIR/install/pysparse.so $TRAVIS_BUILD_DIR/lib;
-    - ldd $TRAVIS_BUILD_DIR/lib/pysparse.so
-    - export PYTHONPATH=$TRAVIS_BUILD_DIR/lib:$PYTHONPATH
+    #- ls $TRAVIS_BUILD_DIR/install
+    #- ls $TRAVIS_BUILD_DIR/build
+    #- cp $TRAVIS_BUILD_DIR/install/pysparse.so $TRAVIS_BUILD_DIR/lib;
+    #- ldd $TRAVIS_BUILD_DIR/lib/pysparse.so
+    #- export PYTHONPATH=$TRAVIS_BUILD_DIR/lib:$PYTHONPATH
     - if [ $TRAVIS_PYTHON_VERSION == "2.7" ]; then
         ls $TRAVIS_BUILD_DIR/build/temp.linux-x86_64-2.7/extern/bin;
-        ls $TRAVIS_BUILD_DIR/build/lib.linux-x86_64-2.4;
+        ls $TRAVIS_BUILD_DIR/build/lib.linux-x86_64-2.7;
         export PATH=$PATH:$TRAVIS_BUILD_DIR/build/temp.linux-x86_64-2.7/extern/bin;
       fi
     - if [ $TRAVIS_PYTHON_VERSION == "3.4" ]; then
