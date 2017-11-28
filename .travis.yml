@@ -53,29 +53,28 @@ install:
     - pip install coveralls
     - pip install pep8
     - pip install nibabel
-    - pip install .
-    - ls /home/travis/build/AGrigis/pisap
+    - python setup.py bdist
+    - ls $TRAVIS_BUILD_DIR
+    - ls $TRAVIS_BUILD_DIR/build
     - if [ $TRAVIS_PYTHON_VERSION == "2.7" ]; then
-        ls /home/travis/build/AGrigis/pisap/build/temp.linux-x86_64-2.7/extern/bin;
-        ls /home/travis/build/AGrigis/pisap/build/lib.linux-x86_64-2.7;
-        cp /home/travis/build/AGrigis/pisap/build/lib.linux-x86_64-2.7/pysparse.so /home/travis/build/AGrigis/pisap/lib;
-        export PATH=$PATH:/home/travis/build/AGrigis/pisap/build/temp.linux-x86_64-2.7/extern/bin;
+        ls $TRAVIS_BUILD_DIR/build/temp.linux-x86_64-2.7/extern/bin;
+        ls $TRAVIS_BUILD_DIR/build/lib.linux-x86_64-2.7;
+        cp $TRAVIS_BUILD_DIR/build/lib.linux-x86_64-2.7/pysparse.so $TRAVIS_BUILD_DIR/lib;
+        export PATH=$PATH:$TRAVIS_BUILD_DIR/build/temp.linux-x86_64-2.7/extern/bin;
       fi
     - if [ $TRAVIS_PYTHON_VERSION == "3.4" ]; then
-        ls /home/travis/build/AGrigis/pisap/build/temp.linux-x86_64-3.4/extern/bin;
-        ls /home/travis/build/AGrigis/pisap/build/lib.linux-x86_64-3.4;
-        cp /home/travis/build/AGrigis/pisap/build/lib.linux-x86_64-3.4/pysparse.so /home/travis/build/AGrigis/pisap/lib;
-        export PATH=$PATH:/home/travis/build/AGrigis/pisap/build/temp.linux-x86_64-3.4/extern/bin;
+        ls $TRAVIS_BUILD_DIR/build/temp.linux-x86_64-3.4/extern/bin;
+        ls $TRAVIS_BUILD_DIR/build/lib.linux-x86_64-3.4;
+        cp $TRAVIS_BUILD_DIR/build/lib.linux-x86_64-3.4/pysparse.so $TRAVIS_BUILD_DIR/lib;
+        export PATH=$PATH:$TRAVIS_BUILD_DIR/build/temp.linux-x86_64-3.4/extern/bin;
       fi
     - if [ $TRAVIS_PYTHON_VERSION == "3.5" ]; then
-        ls /home/travis/build/AGrigis/pisap/build/temp.linux-x86_64-3.5/extern/bin;
-        ls /home/travis/build/AGrigis/pisap/build/lib.linux-x86_64-3.5;
-        cp /home/travis/build/AGrigis/pisap/build/lib.linux-x86_64-3.5/pysparse.so /home/travis/build/AGrigis/pisap/lib;
-        export PATH=$PATH:/home/travis/build/AGrigis/pisap/build/temp.linux-x86_64-3.5/extern/bin;
+        ls $TRAVIS_BUILD_DIR/build/temp.linux-x86_64-3.5/extern/bin;
+        ls $TRAVIS_BUILD_DIR/build/lib.linux-x86_64-3.5;
+        cp $TRAVIS_BUILD_DIR/build/lib.linux-x86_64-3.5/pysparse.so $TRAVIS_BUILD_DIR/lib;
+        export PATH=$PATH:$TRAVIS_BUILD_DIR/build/temp.linux-x86_64-3.5/extern/bin;
       fi
-    - export PYTHONPATH=/home/travis/build/AGrigis/pisap/lib:$PYTHONPATH
-    - echo $TRAVIS_BUILD_DIR
-    - echo $TRAVIS_BUILD_ID
+    - export PYTHONPATH=$TRAVIS_BUILD_DIR/lib:$PYTHONPATH
 
 script:
     - python setup.py nosetests
