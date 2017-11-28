@@ -10,6 +10,7 @@ python:
 before_install:
     - sudo apt-get update
     - sudo apt install python3-dev
+    - sudo apt install libgomp1
     - sudo updatedb
     - locate pyconfig.h
     - locate patchlevel.h
