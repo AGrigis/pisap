@@ -155,6 +155,7 @@ setup(
     install_requires=release_info["REQUIRES"],
     package_data=pkgdata,
     scripts=scripts,
+    extra_compile_args=["-fopenmp"],
     ext_modules=[CMakeExtension(
         "pysparse", sourcedir=os.path.join("sparse2d", "python"))],
     cmdclass={
