@@ -44,6 +44,7 @@ install:
         conda create -n testenv35 --yes pip python=$TRAVIS_PYTHON_VERSION;
         source activate testenv35;
       fi
+    - mkdir -p /home/travis/build/AGrigis/pisap/lib
     - if [ ${TRAVIS_PYTHON_VERSION:0:1} == "2" ]; then pip install mock; fi
     - conda install --yes numpy scipy matplotlib
     - pip install nose
@@ -55,15 +56,26 @@ install:
     - pip install .
     - ls /home/travis/build/AGrigis/pisap
     - if [ $TRAVIS_PYTHON_VERSION == "2.7" ]; then
-        export PATH=$PATH:/home/travis/build/neurospin/pisap/build/temp.linux-x86_64-2.7/extern/bin;
+        ls /home/travis/build/AGrigis/pisap/build/temp.linux-x86_64-2.7/extern/bin;
+        ls /home/travis/build/AGrigis/pisap/build/lib.linux-x86_64-2.7;
+        cp /home/travis/build/AGrigis/pisap/build/lib.linux-x86_64-2.7/pysparse.so /home/travis/build/AGrigis/pisap/lib;
+        export PATH=$PATH:/home/travis/build/AGrigis/pisap/build/temp.linux-x86_64-2.7/extern/bin;
       fi
     - if [ $TRAVIS_PYTHON_VERSION == "3.4" ]; then
-        export PATH=$PATH:/home/travis/build/neurospin/pisap/build/temp.linux-x86_64-3.4/extern/bin;
+        ls /home/travis/build/AGrigis/pisap/build/temp.linux-x86_64-3.4/extern/bin;
+        ls /home/travis/build/AGrigis/pisap/build/lib.linux-x86_64-3.4;
+        cp /home/travis/build/AGrigis/pisap/build/lib.linux-x86_64-3.4/pysparse.so /home/travis/build/AGrigis/pisap/lib;
+        export PATH=$PATH:/home/travis/build/AGrigis/pisap/build/temp.linux-x86_64-3.4/extern/bin;
       fi
-    - if [ $TRAVIS_PYTHON_VERSION == "3.4" ]; then
-        export PATH=$PATH:/home/travis/build/neurospin/pisap/build/temp.linux-x86_64-3.5/extern/bin;
+    - if [ $TRAVIS_PYTHON_VERSION == "3.5" ]; then
+        ls /home/travis/build/AGrigis/pisap/build/temp.linux-x86_64-3.5/extern/bin;
+        ls /home/travis/build/AGrigis/pisap/build/lib.linux-x86_64-3.5;
+        cp /home/travis/build/AGrigis/pisap/build/lib.linux-x86_64-3.5/pysparse.so /home/travis/build/AGrigis/pisap/lib;
+        export PATH=$PATH:/home/travis/build/AGrigis/pisap/build/temp.linux-x86_64-3.5/extern/bin;
       fi
-    - export PYTHONPATH=/home/travis/build/AGrigis/pisap:$PYTHONPATH
+    - export PYTHONPATH=/home/travis/build/AGrigis/pisap/lib:$PYTHONPATH
+    - echo $TRAVIS_BUILD_DIR
+    - echo $TRAVIS_BUILD_ID
 
 script:
     - python setup.py nosetests
