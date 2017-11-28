@@ -58,6 +58,7 @@ install:
     - ls $TRAVIS_BUILD_DIR/install
     - ls $TRAVIS_BUILD_DIR/build
     - cp $TRAVIS_BUILD_DIR/install/pysparse.so $TRAVIS_BUILD_DIR/lib;
+    - ldd $TRAVIS_BUILD_DIR/lib/pysparse.so
     - export PYTHONPATH=$TRAVIS_BUILD_DIR/lib:$PYTHONPATH
     - if [ $TRAVIS_PYTHON_VERSION == "2.7" ]; then
         ls $TRAVIS_BUILD_DIR/build/temp.linux-x86_64-2.7/extern/bin;

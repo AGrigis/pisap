@@ -156,6 +156,7 @@ setup(
     package_data=pkgdata,
     scripts=scripts,
     extra_compile_args=["-fopenmp"],
+    extra_link_args=["-lgomp"],
     ext_modules=[CMakeExtension(
         "pysparse", sourcedir=os.path.join("sparse2d", "python"))],
     cmdclass={
