@@ -32,8 +32,18 @@ before_install:
     - conda info -a
 
 install:
-    - conda create -n testenv --yes pip python=$TRAVIS_PYTHON_VERSION
-    - source activate testenv
+    - if [ $TRAVIS_PYTHON_VERSION == "2.7" ]; then
+        conda create -n testenv27 --yes pip python=$TRAVIS_PYTHON_VERSION;
+        source activate testenv27;
+      fi
+    - if [ $TRAVIS_PYTHON_VERSION == "3.4" ]; then
+        conda create -n testenv34 --yes pip python=$TRAVIS_PYTHON_VERSION;
+        source activate testenv34;
+      fi
+    - if [ $TRAVIS_PYTHON_VERSION == "3.5" ]; then
+        conda create -n testenv35 --yes pip python=$TRAVIS_PYTHON_VERSION;
+        source activate testenv35;
+      fi
     - if [ ${TRAVIS_PYTHON_VERSION:0:1} == "2" ]; then pip install mock; fi
     - conda install --yes numpy scipy matplotlib
     - pip install nose
@@ -42,9 +52,18 @@ install:
     - pip install coveralls
     - pip install pep8
     - pip install nibabel
-    #- pip install git+https://github.com/AGrigis/sf_deconvolve.git
     - pip install .
-    - export PYTHONPATH=/home/travis/build/*/pisap:$PYTHONPATH
+    - ls /home/travis/build/AGrigis/pisap
+    - if [ $TRAVIS_PYTHON_VERSION == "2.7" ]; then
+        export PATH=$PATH:/home/travis/build/neurospin/pisap/build/temp.linux-x86_64-2.7/extern/bin;
+      fi
+    - if [ $TRAVIS_PYTHON_VERSION == "3.4" ]; then
+        export PATH=$PATH:/home/travis/build/neurospin/pisap/build/temp.linux-x86_64-3.4/extern/bin;
+      fi
+    - if [ $TRAVIS_PYTHON_VERSION == "3.4" ]; then
+        export PATH=$PATH:/home/travis/build/neurospin/pisap/build/temp.linux-x86_64-3.5/extern/bin;
+      fi
+    - export PYTHONPATH=/home/travis/build/AGrigis/pisap:$PYTHONPATH
 
 script:
     - python setup.py nosetests
