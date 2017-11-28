@@ -26,6 +26,7 @@ try:
 except:
     warnings.warn("Sparse2d python bindings not found, use binaries.")
     pysparse = None
+    raise
 
 # Third party import
 import numpy
