@@ -13,7 +13,6 @@ set(BoostFolderName boost_${BoostFolderName})
 ExternalProject_Add(Boost
     PREFIX Boost
     URL  http://sourceforge.net/projects/boost/files/boost/${BoostVersion}/${BoostFolderName}.tar.bz2/download
-    URL_HASH  MD5=${BoostMD5}
     CONFIGURE_COMMAND ./bootstrap.sh
                                                         --with-libraries=python
                                                         --with-python=${PYTHON_EXECUTABLE}
