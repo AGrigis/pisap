@@ -4,7 +4,7 @@
 #========================================================#
 
 set(BoostVersion 1.65.1)
-set(BoostSHA256 9807a5d16566c57fd74fb522764e0b134a8bbe6b6e8967b83afefd30dcd3be81)
+set(BoostMD5 41d7542ce40e171f3f7982aff008ff0d)
 
 string(REGEX REPLACE "beta\\.([0-9])$" "beta\\1" BoostFolderName ${BoostVersion})
 string(REPLACE "." "_" BoostFolderName ${BoostFolderName})
@@ -13,7 +13,7 @@ set(BoostFolderName boost_${BoostFolderName})
 ExternalProject_Add(Boost
     PREFIX Boost
     URL  http://sourceforge.net/projects/boost/files/boost/${BoostVersion}/${BoostFolderName}.tar.bz2/download
-    URL_HASH  SHA256=${BoostSHA256}
+    URL_HASH  MD5=${BoostMD5}
     CONFIGURE_COMMAND ./bootstrap.sh
                                                         --with-libraries=python
                                                         --with-python=${PYTHON_EXECUTABLE}
