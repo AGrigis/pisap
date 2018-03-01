@@ -1,11 +1,14 @@
 sudo: required
 dist: trusty
 language: python
+virtualenv:
+    system_site_packages: true
 
 python:
     - "2.7"
     - "3.4"
-    - "3.5.1"
+    - "3.5"
+    - "3.6"
 
 before_install:
     - sudo apt-get update
@@ -41,6 +44,7 @@ install:
     - if [ $TRAVIS_PYTHON_VERSION == "3.5" ]; then
         sudo apt-get install python3-dev;
       fi
+    - find / -name pyconfig.h
     - pip install nose
     - pip install nose-exclude
     - pip install coverage
