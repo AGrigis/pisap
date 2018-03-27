@@ -14,6 +14,7 @@ A module that privides the utility functions to download toy datasets.
 from __future__ import print_function
 import os
 import sys
+import socket
 if sys.version_info[:2] >= (3, 0):
     from urllib.request import FancyURLopener
     from urllib.request import urlopen
@@ -29,7 +30,6 @@ import urllib
 import time
 import shutil
 import numpy
-
 import hashlib
 
 # Package import
@@ -38,6 +38,8 @@ from pysap.base.exceptions import Exception
 
 
 # Global parameters
+TIMEOUT = 30
+socket.setdefaulttimeout(TIMEOUT)
 SAMPLE_DATE_FILES = {
     "mri-nifti": {
         "url": ("ftp://ftp.cea.fr/pub/unati/nsap/pysap/datasets/"
@@ -270,7 +272,7 @@ def download_file(url, data_dir, resume=True, overwrite=False, verbose=0):
             bytes_so_far = local_file_size
         # Case 2: just download the file
         else:
-            data = urlopen(url)
+            data = urlopen(url, timeout=TIMEOUT)
             local_file = open(temp_fname, "wb")
         # Get the total file size
         try:
